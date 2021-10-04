@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Experiments of different directions in optimization for tiny neural nets - Now optimize what?</title>
+  <meta name="description" content="This is a proposal which fails to be turned into a paper during my PhD.
+Problem and Data Let&rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the 1−2−1 structure, thus has 7 parameters in total. Network 2 (N2) has the 1−1−1 structure, thus has 4 parameters in total. I tried linear, Relu, sigmoid as three activation functions and square loss as the loss function.">
+  <meta name="author" content="Chenxin Ma"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Now optimize what?",
+    
+    "url": "https:\/\/chenxin-ma.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/chenxin-ma.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/chenxin-ma.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/chenxin-ma.github.io\/post\/dnn_symmetry\/",
+          "name": "Experiments of different directions in optimization for tiny neural nets"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Chenxin Ma"
+  },
+  "headline": "Experiments of different directions in optimization for tiny neural nets",
+  "description" : "This is a proposal which fails to be turned into a paper during my PhD.\nProblem and Data Let\u0026rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the 1−2−1 structure, thus has 7 parameters in total. Network 2 (N2) has the 1−1−1 structure, thus has 4 parameters in total. I tried linear, Relu, sigmoid as three activation functions and square loss as the loss function.",
+  "inLanguage" : "en",
+  "wordCount":  905 ,
+  "datePublished" : "2020-12-18T22:50:25",
+  "dateModified" : "2020-12-18T22:50:25",
+  "image" : "https:\/\/chenxin-ma.github.io\/img\/f1.jpeg",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/chenxin-ma.github.io\/post\/dnn_symmetry\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/chenxin-ma.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/chenxin-ma.github.io\/img\/f1.jpeg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Experiments of different directions in optimization for tiny neural nets" />
+<meta property="og:description" content="This is a proposal which fails to be turned into a paper during my PhD.
+Problem and Data Let&rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the 1−2−1 structure, thus has 7 parameters in total. Network 2 (N2) has the 1−1−1 structure, thus has 4 parameters in total. I tried linear, Relu, sigmoid as three activation functions and square loss as the loss function.">
+<meta property="og:image" content="https://chenxin-ma.github.io/img/f1.jpeg" />
+<meta property="og:url" content="https://chenxin-ma.github.io/post/dnn_symmetry/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Now optimize what?" />
+
+  <meta name="twitter:title" content="Experiments of different directions in optimization for tiny neural …" />
+  <meta name="twitter:description" content="This is a proposal which fails to be turned into a paper during my PhD.
+Problem and Data Let&rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the …">
+  <meta name="twitter:image" content="https://chenxin-ma.github.io/img/f1.jpeg" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://chenxin-ma.github.io/img/f1.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.87.0" />
+  <link rel="alternate" href="https://chenxin-ma.github.io/index.xml" type="application/rss+xml" title="Now optimize what?"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://chenxin-ma.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://chenxin-ma.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://chenxin-ma.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://chenxin-ma.github.io">Now optimize what?</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">data mining</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/research_connections">Research connections</a>
+                
+                  <a href="/post/sportfans">sport fans</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">optimization</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/dnn_symmetry">symmetry of neural nets</a>
+                
+                  <a href="/post/ortools_vrp_first_stgy">Ortools parameters</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">code</a>
+              <div class="navlinks-children">
+                
+                  <a href="/page/add_cron_jobs">cron job</a>
+                
+                  <a href="/post/cuda_combination_search">cuda_search</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Now optimize what?" href="https://chenxin-ma.github.io">
+            <img class="avatar-img" src="https://chenxin-ma.github.io/img/f1.jpeg" alt="Now optimize what?" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Experiments of different directions in optimization for tiny neural nets</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 18, 2020
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;905&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Chenxin Ma
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>This is a proposal which fails to be turned into a paper during my PhD.</p>
+<h2 id="problem-and-data">Problem and Data</h2>
+<p>Let&rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the 1−2−1 structure, thus has 7 parameters in total. Network 2 (N2) has the 1−1−1 structure, thus has 4 parameters in total. I tried linear, Relu, sigmoid as three activation functions and square loss as the loss function. However, for simplicity, here all the results are based on sigmoid activation function only. Figure 1 shows the network structure.</p>
+<p><img src="/img_post/two_nets.png" alt="image"></p>
+<p>Dataset one (D1) contains 4 samples, two in each class. Dataset two (D2) contains 20 samples, 10 in each class. Figure 2 shows the distribution of both of them.</p>
+<p><img src="/img_post/two_data.png" alt="image"></p>
+<p>Notice that for D1, N1 should be able to achieve 100% accuracy after training, but D2 is a rather “difficult” dataset for both these two networks.</p>
+<h2 id="what-directions-that-conjugate-gradient-cg-gives-us">What directions that Conjugate Gradient (CG) gives us?</h2>
+<p>Here we focus on N1 only. We choose $200$ random points in ${\bf R}^7$ for initializing parameters. For each point, the gradient $d_{gd}$ and the results of CG steps $d_{cg}$ are computed. After line search, we are able to obtain two updated points and their objective values, i.e., $f_{gd}$ and $f_{cg}$. We record the ratio
+$$ r:=\frac{f_{gd} - f_0}{f_{cg} - f_0 } $$
+to measure the quality of two updates, where $f_0$ is the original objective value before taking any updates. Thus, $r&gt;1$ means negative gradient could lead to more decreasing on objective value than a CG step, and vice versa.</p>
+<p>The only difference between CG implemented here and traditional CG is, here if $\alpha&lt;0$, we will terminate CG loops and return the negative curvature direction as output.</p>
+<p>The number of maximal CG iterations is tuned from $1$ to $5$.</p>
+<p>We apply backtrack line search in both gradient steps and CG steps. The initial step size is $10$ and multiplier on it is $0.5$ if the iteration has to go on. However, for CG steps, we need to flip the sign of step size in each line search iterations since the direction may not be a descent direction.</p>
+<p><img src="/img_post/figure3_dnn.png" alt="image"></p>
+<p>The figures above are two bar plots showing, by setting different maximal iterations for CG, the percentages of $r&gt;1$ and $r&lt;1$. The observation is that, running more than $3$ iterations of CG does not change the results at all. The reason is that CG will find a negative curvature direction in first $3$ iterations in all cases.</p>
+<p>Another observation is, by allowing CG to take more iterations, the outputs of CG have lower chance to beat gradient direction. Therefore, I guess the reason here is those negative curvature directions cannot provide much decrease on objective.</p>
+<h2 id="how-is-leftmost-eigenvector-of-hessian">How is leftmost eigenvector of Hessian?</h2>
+<p>Here we consider to use leftmost eigenvector as the direction to make updates. In particular, at any point, if the leftmost eigenvalue of Hessian is less than $0$, then we use left most eigenvector to do line search. If it is greater than $0$, then we use the output of CG with $5$ as maximal number of iterations. (It is worthwhile to note that for N1 and both datasets, as far as I see, all the random points have negative leftmost eigenvalue in the Hessian.)</p>
+<p>Let $f_{le}$ denote the objective obtained from doing line search on leftmost eigenvector as a direction. After defining
+$$ r:=\frac{f_{gd} - f_0}{f_{nc} - f_0 }.$$
+and running the experiments, I found there are $\mathbf{26%}$ cases which lead to $r&gt;1$ for D1 and $\mathbf{19%}$ cases leading to $r&gt;1$ for D2. The results indicate that leftmost eigenvector of Hessian could be a direction that has larger chance to lead to a larger decrease in objective than gradient. This also suggest that the negative curvature directions returned by CG is not &ldquo;negative enough&rdquo; since the product $p^TA p$ (even though it is negative) can be rather close to $0$.</p>
+<p><img src="/img_post/figure4_dnn.png" alt="image"></p>
+<h2 id="using-three-directions-as-three-algorithms-for-training">Using three directions as three algorithms for training</h2>
+<p>In the above experiments, we compare reduction of three kinds of directions on random initial points. Here, we run each of them as an algorithm to see how they will perform on N1 and D1. In particular, each algorithm is run for $100$ iterations to see what is result it can reach.</p>
+<p>Figure 6 is a screenshot of running each algorithms for $100$ iterations, starting with $10$ different initial points as $10$ sets of experiments. The observation is that CG can reach loss close to $0$ in most of cases, while the other two cannot. This is opposite to the observation in the previous experiments which show CG steps have lower chance to provide large decreases on objective, compared with graident steps. This is a surprising result, and I would like to explore the reason behind it.</p>
+<p><img src="/img_post/figure5_dnn.png" alt="image"></p>
+<h2 id="visualization-of-these-directions-on-n2">Visualization of these directions on N2</h2>
+<p>In all the experiments, we only use N1 as the network structure. Here we consider to use N2 to build visualization which help to understand different kinds of directions. Note that we will fix the value of two biases so that there will be only 2 weights as parameters. Figure 6 shows an example of such visualization. The axis having the range from $0.25$ to $0.5$ represents the objective value, while the other two represent the values of two weights. The black, red and blue lines represents leftmost eigenvector, CG outputs and negative gradient directions respectively. I hope visualization like this will be helpful in future exploration.</p>
+<p><img src="/img_post/figure6_dnn.png" alt="image"></p>
+
+
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://chenxin-ma.github.io/post/sportfans/" data-toggle="tooltip" data-placement="top" title="Sport fans&#39; favor">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/" data-toggle="tooltip" data-placement="top" title="Ortools_vrp_firstStgy">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/schemmy" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/chenxin-ma-86076256" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Chenxin Ma
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://chenxin-ma.github.io">Now optimize what?</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.87.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://chenxin-ma.github.io/js/main.js"></script>
+<script src="https://chenxin-ma.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://chenxin-ma.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

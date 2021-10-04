@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Now optimize what?</title>
+    <link>https://chenxin-ma.github.io/post/</link>
+    <description>Recent content in Posts on Now optimize what?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 03 Sep 2021 21:56:33 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cuda_combination_search</title>
+      <link>https://chenxin-ma.github.io/post/cuda_combination_search/</link>
+      <pubDate>Fri, 03 Sep 2021 21:56:33 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/cuda_combination_search/</guid>
+      <description>#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;thrust/host_vector.h&amp;gt;#include &amp;lt;sys/time.h&amp;gt;#include &amp;lt;time.h&amp;gt; #define MAX_N 12 #define nTPB 256 #define GRIDSIZE (32*nTPB)  #define cudaCheckErrors(msg) \ do { \ cudaError_t __err = cudaGetLastError(); \ if (__err != cudaSuccess) { \ fprintf(stderr, &amp;#34;Fatal error: %s (%s at %s:%d)\n&amp;#34;, \ msg, cudaGetErrorString(__err), \ __FILE__, __LINE__); \ fprintf(stderr, &amp;#34;*** FAILED - ABORTING\n&amp;#34;); \ exit(1); \ } \ } while (0)  // thrust code is to quickly prototype a CPU based // method for verification int increment(thrust::host_vector&amp;lt;unsigned&amp;gt; &amp;amp;data, unsigned max){ int pos = 0; int done = 0; int finished = 0; while(!</description>
+    </item>
+    
+    <item>
+      <title>Ortools_vrp_firstStgy</title>
+      <link>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</link>
+      <pubDate>Fri, 03 Sep 2021 09:24:24 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</guid>
+      <description>Link: https://google.github.io/or-tools/java/enumcom_1_1google_1_1ortools_1_1constraintsolver_1_1FirstSolutionStrategy_1_1Value.html</description>
+    </item>
+    
+    <item>
+      <title>Experiments of different directions in optimization for tiny neural nets</title>
+      <link>https://chenxin-ma.github.io/post/dnn_symmetry/</link>
+      <pubDate>Fri, 18 Dec 2020 22:50:25 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/dnn_symmetry/</guid>
+      <description>This is a proposal which fails to be turned into a paper during my PhD.
+Problem and Data Let&amp;rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the 1−2−1 structure, thus has 7 parameters in total. Network 2 (N2) has the 1−1−1 structure, thus has 4 parameters in total. I tried linear, Relu, sigmoid as three activation functions and square loss as the loss function.</description>
+    </item>
+    
+    <item>
+      <title>Sport fans&#39; favor</title>
+      <link>https://chenxin-ma.github.io/post/sportfans/</link>
+      <pubDate>Wed, 02 Sep 2020 21:32:41 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/sportfans/</guid>
+      <description>In the previous post, I played with SimRank algorithm on Arxiv data to show the potential relationship among research areas.
+In this post, I would like to apply the same thing on data from a Chinese sport forum, hupu. In general, the question is &amp;ldquo;is there a pattern for sport fans to support different teams? For example, a fan supports Real Madrid will rarely supports Barcelona at the same time&amp;rdquo;. To me, as a deep sport fan, the final question is &amp;ldquo;For what reasons, a fan becomes a fan for that team&amp;rdquo;?</description>
+    </item>
+    
+    <item>
+      <title>Add scheduled jobs via Cron on AWS EC2</title>
+      <link>https://chenxin-ma.github.io/post/add_cron_jobs/</link>
+      <pubDate>Thu, 02 Apr 2020 21:01:50 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/add_cron_jobs/</guid>
+      <description>By using Cron, we can schedule the running of scripts at a specific date and time. However, it took me a while to figure out how to make it work on AWS EC2 to schedule a python task. Below are steps.
+1). Need to add conda activate env_name in bash file, so that conda environment is activated automatically before Cron runs.
+2). Create Cron jobs by crontab -e. After setting up the scheduled time following syntax of Crontab, we need to first cd to the path of python script.</description>
+    </item>
+    
+    <item>
+      <title>Research connections via SimRank</title>
+      <link>https://chenxin-ma.github.io/post/research_connections/</link>
+      <pubDate>Wed, 20 Feb 2019 21:35:34 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/research_connections/</guid>
+      <description>I feel PageRank and SimRank are very interesting algorithms after learning them. They are able to provide fascinating insights for connections in any area. This blog is one of my attempts of applying SimRank to find such connections, in research areas.
+We all use Arxiv to post our research results. When I posted my first paper, there was a big question to me: How to choose the tags as areas of research?</description>
+    </item>
+    
+  </channel>
+</rss>

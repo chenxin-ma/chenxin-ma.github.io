@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Now optimizer what?</title>
+    <title>Categories on Now optimize what?</title>
     <link>https://chenxin-ma.github.io/categories/</link>
-    <description>Recent content in Categories on Now optimizer what?</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Chenxin Ma 2021</copyright><atom:link href="https://chenxin-ma.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent content in Categories on Now optimize what?</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://chenxin-ma.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
