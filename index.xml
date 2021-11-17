@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Now optimize what?</title>
+    <title>What to optimize next?</title>
     <link>https://chenxin-ma.github.io/</link>
-    <description>Recent content on Now optimize what?</description>
+    <description>Recent content on What to optimize next?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 03 Sep 2021 21:56:33 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Cuda_combination_search</title>
-      <link>https://chenxin-ma.github.io/post/cuda_combination_search/</link>
-      <pubDate>Fri, 03 Sep 2021 21:56:33 -0700</pubDate>
-      
-      <guid>https://chenxin-ma.github.io/post/cuda_combination_search/</guid>
-      <description>#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;thrust/host_vector.h&amp;gt;#include &amp;lt;sys/time.h&amp;gt;#include &amp;lt;time.h&amp;gt; #define MAX_N 12 #define nTPB 256 #define GRIDSIZE (32*nTPB)  #define cudaCheckErrors(msg) \ do { \ cudaError_t __err = cudaGetLastError(); \ if (__err != cudaSuccess) { \ fprintf(stderr, &amp;#34;Fatal error: %s (%s at %s:%d)\n&amp;#34;, \ msg, cudaGetErrorString(__err), \ __FILE__, __LINE__); \ fprintf(stderr, &amp;#34;*** FAILED - ABORTING\n&amp;#34;); \ exit(1); \ } \ } while (0)  // thrust code is to quickly prototype a CPU based // method for verification int increment(thrust::host_vector&amp;lt;unsigned&amp;gt; &amp;amp;data, unsigned max){ int pos = 0; int done = 0; int finished = 0; while(!</description>
-    </item>
-    
-    <item>
-      <title>Ortools_vrp_firstStgy</title>
-      <link>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</link>
-      <pubDate>Fri, 03 Sep 2021 09:24:24 -0700</pubDate>
-      
-      <guid>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</guid>
-      <description>Link: https://google.github.io/or-tools/java/enumcom_1_1google_1_1ortools_1_1constraintsolver_1_1FirstSolutionStrategy_1_1Value.html</description>
-    </item>
-    
+    <lastBuildDate>Fri, 18 Dec 2020 22:50:25 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Experiments of different directions in optimization for tiny neural nets</title>
       <link>https://chenxin-ma.github.io/post/dnn_symmetry/</link>
@@ -32,6 +14,17 @@
       <guid>https://chenxin-ma.github.io/post/dnn_symmetry/</guid>
       <description>This is a proposal which fails to be turned into a paper during my PhD.
 Problem and Data Let&amp;rsquo;s only focus on two simple networks and two sets of one dimensional data. Network 1 (N1) has the 1−2−1 structure, thus has 7 parameters in total. Network 2 (N2) has the 1−1−1 structure, thus has 4 parameters in total. I tried linear, Relu, sigmoid as three activation functions and square loss as the loss function.</description>
+    </item>
+    
+    <item>
+      <title>A benchmark of open source VRP solvers</title>
+      <link>https://chenxin-ma.github.io/post/vrp_benchmark/</link>
+      <pubDate>Mon, 16 Nov 2020 16:34:33 -0800</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/vrp_benchmark/</guid>
+      <description>1. Motivation of the benchmark Figure out how different algorithms in various solvers perform.
+2. Benchmark cases Gehring &amp;amp; Homberger vrptw 200, 600 cases
+3. Solver options    solver initial solution algo heuristic # threads     ortools Christofides (chris) gls, sa, gts* 1   ortools Path Cheapest Arc (pca) gls, sa, gts 1   ortools Savings gls, sa, gts 1   ortools ensemble** gls, sa, gts 1   jsprit default default 1, 2, 8    *Heuristic names: guided local search (gls), simulated annealing (sa), genetic tabu search (gts)</description>
     </item>
     
     <item>
@@ -45,6 +38,25 @@ In this post, I would like to apply the same thing on data from a Chinese sport 
     </item>
     
     <item>
+      <title>Call Cuda code in Java Through JNI</title>
+      <link>https://chenxin-ma.github.io/post/jni/</link>
+      <pubDate>Sat, 16 May 2020 16:34:33 -0800</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/jni/</guid>
+      <description>Here is a step by step instruction of compiling cuda code through JNI interface.
+ Declared a simple native method, and called System.loadLibrary in java  package com.name.package.jniexample; public class HelloJNI { static { try{ System.loadLibrary(&amp;#34;hello&amp;#34;); } catch(UnsatisfiedLinkError e){ System.err.println(&amp;#34;Cannot load .so library.&amp;#34;) e.toString(); } } private native void sayHello(String str); public static void main(String[] args) { new HelloJNI().sayHello(); } } Compile the java file, create header file  javac $(dir)/HelloJNI.</description>
+    </item>
+    
+    <item>
+      <title>Cuda_combination_search</title>
+      <link>https://chenxin-ma.github.io/post/cuda_combination_search/</link>
+      <pubDate>Fri, 03 Apr 2020 21:56:33 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/cuda_combination_search/</guid>
+      <description>#include &amp;lt;stdio.h&amp;gt;#include &amp;lt;thrust/host_vector.h&amp;gt;#include &amp;lt;sys/time.h&amp;gt;#include &amp;lt;time.h&amp;gt; #define MAX_N 12 #define nTPB 256 #define GRIDSIZE (32*nTPB)  #define cudaCheckErrors(msg) \ do { \ cudaError_t __err = cudaGetLastError(); \ if (__err != cudaSuccess) { \ fprintf(stderr, &amp;#34;Fatal error: %s (%s at %s:%d)\n&amp;#34;, \ msg, cudaGetErrorString(__err), \ __FILE__, __LINE__); \ fprintf(stderr, &amp;#34;*** FAILED - ABORTING\n&amp;#34;); \ exit(1); \ } \ } while (0)  // thrust code is to quickly prototype a CPU based // method for verification int increment(thrust::host_vector&amp;lt;unsigned&amp;gt; &amp;amp;data, unsigned max){ int pos = 0; int done = 0; int finished = 0; while(!</description>
+    </item>
+    
+    <item>
       <title>Add scheduled jobs via Cron on AWS EC2</title>
       <link>https://chenxin-ma.github.io/post/add_cron_jobs/</link>
       <pubDate>Thu, 02 Apr 2020 21:01:50 -0700</pubDate>
@@ -53,6 +65,15 @@ In this post, I would like to apply the same thing on data from a Chinese sport 
       <description>By using Cron, we can schedule the running of scripts at a specific date and time. However, it took me a while to figure out how to make it work on AWS EC2 to schedule a python task. Below are steps.
 1). Need to add conda activate env_name in bash file, so that conda environment is activated automatically before Cron runs.
 2). Create Cron jobs by crontab -e. After setting up the scheduled time following syntax of Crontab, we need to first cd to the path of python script.</description>
+    </item>
+    
+    <item>
+      <title>Ortools_vrp_firstStgy</title>
+      <link>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</link>
+      <pubDate>Fri, 13 Dec 2019 09:24:24 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</guid>
+      <description>Link: https://google.github.io/or-tools/java/enumcom_1_1google_1_1ortools_1_1constraintsolver_1_1FirstSolutionStrategy_1_1Value.html</description>
     </item>
     
     <item>
