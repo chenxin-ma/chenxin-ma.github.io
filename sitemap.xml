@@ -2,29 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://chenxin-ma.github.io/tags/algorithm/</loc>
+    <lastmod>2021-06-02T21:32:41-07:00</lastmod>
+  </url><url>
+    <loc>https://chenxin-ma.github.io/tags/data-mining/</loc>
+    <lastmod>2021-06-02T21:32:41-07:00</lastmod>
+  </url><url>
+    <loc>https://chenxin-ma.github.io/post/</loc>
+    <lastmod>2021-06-02T21:32:41-07:00</lastmod>
+  </url><url>
+    <loc>https://chenxin-ma.github.io/post/sportfans/</loc>
+    <lastmod>2021-06-02T21:32:41-07:00</lastmod>
+  </url><url>
+    <loc>https://chenxin-ma.github.io/tags/</loc>
+    <lastmod>2021-06-02T21:32:41-07:00</lastmod>
+  </url><url>
+    <loc>https://chenxin-ma.github.io/</loc>
+    <lastmod>2021-06-02T21:32:41-07:00</lastmod>
+  </url><url>
     <loc>https://chenxin-ma.github.io/post/dnn_symmetry/</loc>
     <lastmod>2020-12-18T22:50:25-07:00</lastmod>
   </url><url>
-    <loc>https://chenxin-ma.github.io/post/</loc>
-    <lastmod>2020-12-18T22:50:25-07:00</lastmod>
-  </url><url>
-    <loc>https://chenxin-ma.github.io/</loc>
-    <lastmod>2020-12-18T22:50:25-07:00</lastmod>
+    <loc>https://chenxin-ma.github.io/post/research_connections/</loc>
+    <lastmod>2020-11-20T21:35:34-07:00</lastmod>
   </url><url>
     <loc>https://chenxin-ma.github.io/post/vrp_benchmark/</loc>
-    <lastmod>2020-11-16T16:34:33-08:00</lastmod>
-  </url><url>
-    <loc>https://chenxin-ma.github.io/tags/algorithm/</loc>
-    <lastmod>2020-09-02T21:32:41-07:00</lastmod>
-  </url><url>
-    <loc>https://chenxin-ma.github.io/tags/data-mining/</loc>
-    <lastmod>2020-09-02T21:32:41-07:00</lastmod>
-  </url><url>
-    <loc>https://chenxin-ma.github.io/post/sportfans/</loc>
-    <lastmod>2020-09-02T21:32:41-07:00</lastmod>
-  </url><url>
-    <loc>https://chenxin-ma.github.io/tags/</loc>
-    <lastmod>2020-09-02T21:32:41-07:00</lastmod>
+    <lastmod>2020-10-01T16:34:33-08:00</lastmod>
   </url><url>
     <loc>https://chenxin-ma.github.io/post/jni/</loc>
     <lastmod>2020-05-16T16:34:33-08:00</lastmod>
@@ -46,9 +49,6 @@
   </url><url>
     <loc>https://chenxin-ma.github.io/about/</loc>
     <lastmod>2019-08-31T23:36:57-07:00</lastmod>
-  </url><url>
-    <loc>https://chenxin-ma.github.io/post/research_connections/</loc>
-    <lastmod>2019-02-20T21:35:34-07:00</lastmod>
   </url><url>
     <loc>https://chenxin-ma.github.io/categories/</loc>
   </url>

@@ -5,9 +5,19 @@
     <link>https://chenxin-ma.github.io/post/</link>
     <description>Recent content in Posts on What to optimize next?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 18 Dec 2020 22:50:25 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Jun 2021 21:32:41 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Experiments of different directions in optimization for tiny neural nets</title>
+      <title>Sport fans&#39; favor via SimRank</title>
+      <link>https://chenxin-ma.github.io/post/sportfans/</link>
+      <pubDate>Wed, 02 Jun 2021 21:32:41 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/sportfans/</guid>
+      <description>In the previous post, I played with SimRank algorithm on Arxiv data to show the potential relationship among research areas.
+In this post, I would like to apply the same thing on data from a Chinese sport forum, hupu. In general, the question is &amp;ldquo;is there a pattern for sport fans to support different teams? For example, a fan supports Real Madrid will rarely supports Barcelona at the same time&amp;rdquo;. To me, as a deep sport fan, the final question is &amp;ldquo;For what reasons, a fan becomes a fan for that team&amp;rdquo;?</description>
+    </item>
+    
+    <item>
+      <title>Symmetry of NN: Experiments of different directions in optimization for tiny neural nets</title>
       <link>https://chenxin-ma.github.io/post/dnn_symmetry/</link>
       <pubDate>Fri, 18 Dec 2020 22:50:25 -0700</pubDate>
       
@@ -17,24 +27,24 @@ Problem and Data Let&amp;rsquo;s only focus on two simple networks and two sets 
     </item>
     
     <item>
+      <title>Research connections via SimRank</title>
+      <link>https://chenxin-ma.github.io/post/research_connections/</link>
+      <pubDate>Fri, 20 Nov 2020 21:35:34 -0700</pubDate>
+      
+      <guid>https://chenxin-ma.github.io/post/research_connections/</guid>
+      <description>I feel PageRank and SimRank are very interesting algorithms after learning them. They are able to provide fascinating insights for connections in any area. This blog is one of my attempts of applying SimRank to find such connections, in research areas.
+We all use Arxiv to post our research results. When I posted my first paper, there was a big question to me: How to choose the tags as areas of research?</description>
+    </item>
+    
+    <item>
       <title>A benchmark of open source VRP solvers</title>
       <link>https://chenxin-ma.github.io/post/vrp_benchmark/</link>
-      <pubDate>Mon, 16 Nov 2020 16:34:33 -0800</pubDate>
+      <pubDate>Thu, 01 Oct 2020 16:34:33 -0800</pubDate>
       
       <guid>https://chenxin-ma.github.io/post/vrp_benchmark/</guid>
       <description>1. Motivation of the benchmark Figure out how different algorithms in various solvers perform.
 2. Benchmark cases Gehring &amp;amp; Homberger vrptw 200, 600 cases
 3. Solver options    solver initial solution algo heuristic # threads     ortools Christofides (chris) gls, sa, gts* 1   ortools Path Cheapest Arc (pca) gls, sa, gts 1   ortools Savings gls, sa, gts 1   ortools ensemble** gls, sa, gts 1   jsprit default default 1, 2, 8    *Heuristic names: guided local search (gls), simulated annealing (sa), genetic tabu search (gts)</description>
-    </item>
-    
-    <item>
-      <title>Sport fans&#39; favor</title>
-      <link>https://chenxin-ma.github.io/post/sportfans/</link>
-      <pubDate>Wed, 02 Sep 2020 21:32:41 -0700</pubDate>
-      
-      <guid>https://chenxin-ma.github.io/post/sportfans/</guid>
-      <description>In the previous post, I played with SimRank algorithm on Arxiv data to show the potential relationship among research areas.
-In this post, I would like to apply the same thing on data from a Chinese sport forum, hupu. In general, the question is &amp;ldquo;is there a pattern for sport fans to support different teams? For example, a fan supports Real Madrid will rarely supports Barcelona at the same time&amp;rdquo;. To me, as a deep sport fan, the final question is &amp;ldquo;For what reasons, a fan becomes a fan for that team&amp;rdquo;?</description>
     </item>
     
     <item>
@@ -74,16 +84,6 @@ In this post, I would like to apply the same thing on data from a Chinese sport 
       
       <guid>https://chenxin-ma.github.io/post/ortools_vrp_first_stgy/</guid>
       <description>Link: https://google.github.io/or-tools/java/enumcom_1_1google_1_1ortools_1_1constraintsolver_1_1FirstSolutionStrategy_1_1Value.html</description>
-    </item>
-    
-    <item>
-      <title>Research connections via SimRank</title>
-      <link>https://chenxin-ma.github.io/post/research_connections/</link>
-      <pubDate>Wed, 20 Feb 2019 21:35:34 -0700</pubDate>
-      
-      <guid>https://chenxin-ma.github.io/post/research_connections/</guid>
-      <description>I feel PageRank and SimRank are very interesting algorithms after learning them. They are able to provide fascinating insights for connections in any area. This blog is one of my attempts of applying SimRank to find such connections, in research areas.
-We all use Arxiv to post our research results. When I posted my first paper, there was a big question to me: How to choose the tags as areas of research?</description>
     </item>
     
   </channel>

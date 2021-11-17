@@ -5,11 +5,11 @@
     <link>https://chenxin-ma.github.io/tags/algorithm/</link>
     <description>Recent content in algorithm on What to optimize next?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 02 Sep 2020 21:32:41 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Jun 2021 21:32:41 -0700</lastBuildDate><atom:link href="https://chenxin-ma.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Sport fans&#39; favor</title>
+      <title>Sport fans&#39; favor via SimRank</title>
       <link>https://chenxin-ma.github.io/post/sportfans/</link>
-      <pubDate>Wed, 02 Sep 2020 21:32:41 -0700</pubDate>
+      <pubDate>Wed, 02 Jun 2021 21:32:41 -0700</pubDate>
       
       <guid>https://chenxin-ma.github.io/post/sportfans/</guid>
       <description>In the previous post, I played with SimRank algorithm on Arxiv data to show the potential relationship among research areas.
@@ -19,7 +19,7 @@ In this post, I would like to apply the same thing on data from a Chinese sport 
     <item>
       <title>Research connections via SimRank</title>
       <link>https://chenxin-ma.github.io/post/research_connections/</link>
-      <pubDate>Wed, 20 Feb 2019 21:35:34 -0700</pubDate>
+      <pubDate>Fri, 20 Nov 2020 21:35:34 -0700</pubDate>
       
       <guid>https://chenxin-ma.github.io/post/research_connections/</guid>
       <description>I feel PageRank and SimRank are very interesting algorithms after learning them. They are able to provide fascinating insights for connections in any area. This blog is one of my attempts of applying SimRank to find such connections, in research areas.
