@@ -1,0 +1,944 @@
+<title>AI Industry Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #F5F6F9;
+    --surface: #FFFFFF;
+    --surface-2: #EEF0F5;
+    --ink: #0B1220;
+    --ink-muted: #5B6478;
+    --border: #E2E6ED;
+    --border-strong: #C5CBD6;
+    --accent: #0066FF;
+    --shadow: 0 1px 2px rgba(11,18,32,0.04), 0 8px 24px rgba(11,18,32,0.06);
+
+    --cat-silicon:   #009E7C;
+    --cat-hyper:     #2F7FD9;
+    --cat-neocloud:  #8B4EDB;
+    --cat-frontier:  #D93F3A;
+    --cat-openmodel: #C48A1C;
+    --cat-applied:   #D64F86;
+    --cat-data:      #1D9EA2;
+    --cat-infra:     #8F6740;
+    --cat-robotics:  #6A9E2D;
+    --cat-labeling:  #5A3EBF;
+
+    --rel-supplies:  #1D9EA2;
+    --rel-competes:  #D93F3A;
+    --rel-invests:   #C48A1C;
+    --rel-owns:      #8B4EDB;
+    --rel-uses:      #2F7FD9;
+
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0B1220;
+      --surface: #141B2C;
+      --surface-2: #1B2438;
+      --ink: #EEF1F6;
+      --ink-muted: #8994AB;
+      --border: #26314A;
+      --border-strong: #35415E;
+      --accent: #4A9EFF;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.35);
+
+      --cat-silicon:   #00C39A;
+      --cat-hyper:     #4A9EFF;
+      --cat-neocloud:  #B26AFF;
+      --cat-frontier:  #FF5A55;
+      --cat-openmodel: #F0B341;
+      --cat-applied:   #FF6BA6;
+      --cat-data:      #39C7CB;
+      --cat-infra:     #B8865E;
+      --cat-robotics:  #B4E251;
+      --cat-labeling:  #7E5CFF;
+
+      --rel-supplies:  #39C7CB;
+      --rel-competes:  #FF5A55;
+      --rel-invests:   #F0B341;
+      --rel-owns:      #B26AFF;
+      --rel-uses:      #4A9EFF;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0B1220;
+    --surface: #141B2C;
+    --surface-2: #1B2438;
+    --ink: #EEF1F6;
+    --ink-muted: #8994AB;
+    --border: #26314A;
+    --border-strong: #35415E;
+    --accent: #4A9EFF;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.35);
+
+    --cat-silicon:   #00C39A;
+    --cat-hyper:     #4A9EFF;
+    --cat-neocloud:  #B26AFF;
+    --cat-frontier:  #FF5A55;
+    --cat-openmodel: #F0B341;
+    --cat-applied:   #FF6BA6;
+    --cat-data:      #39C7CB;
+    --cat-infra:     #B8865E;
+    --cat-robotics:  #B4E251;
+    --cat-labeling:  #7E5CFF;
+
+    --rel-supplies:  #39C7CB;
+    --rel-competes:  #FF5A55;
+    --rel-invests:   #F0B341;
+    --rel-owns:      #B26AFF;
+    --rel-uses:      #4A9EFF;
+  }
+
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.45;
+    overflow: hidden;
+  }
+  * { box-sizing: border-box; }
+
+  .app {
+    display: grid;
+    grid-template-columns: 300px 1fr 340px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "header header header"
+      "left main right";
+    height: 100%;
+    gap: 0;
+  }
+  @media (max-width: 900px) {
+    .app {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas:
+        "header"
+        "left"
+        "main"
+        "right";
+    }
+    body { overflow-y: auto; }
+  }
+
+  header.top {
+    grid-area: header;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 14px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  header.top h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  header.top .sub {
+    color: var(--ink-muted);
+    font-size: 13px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+  header.top .theme-toggle {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  header.top .theme-toggle:hover { border-color: var(--border-strong); }
+
+  aside.side {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 20px 20px 40px;
+  }
+  aside.side.left { grid-area: left; }
+  aside.side.right {
+    grid-area: right;
+    border-right: none;
+    border-left: 1px solid var(--border);
+  }
+  @media (max-width: 900px) {
+    aside.side { max-height: 320px; border-right: none; border-bottom: 1px solid var(--border); }
+    aside.side.right { border-left: none; border-top: 1px solid var(--border); }
+  }
+
+  .side h2 {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 24px 0 10px;
+  }
+  .side h2:first-child { margin-top: 0; }
+
+  .search {
+    position: relative;
+  }
+  .search input {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px 10px 34px;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+  .search input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .search .icon {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-muted);
+    pointer-events: none;
+    width: 14px; height: 14px;
+  }
+  .search-results {
+    margin-top: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: none;
+  }
+  .search-results.open { display: block; }
+  .search-results button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-results button:last-child { border-bottom: none; }
+  .search-results button:hover { background: var(--surface); }
+  .search-results button .cat {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-left: 6px;
+  }
+
+  .filter-list {
+    display: grid;
+    gap: 4px;
+  }
+  .filter-list label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    user-select: none;
+  }
+  .filter-list label:hover { background: var(--surface-2); }
+  .filter-list input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 14px; height: 14px;
+    margin: 0;
+  }
+  .filter-list .swatch {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .filter-list .swatch.line {
+    height: 3px;
+    border-radius: 2px;
+  }
+  .filter-list .swatch.dashed {
+    background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 10px);
+  }
+  .filter-list .name { flex: 1; }
+  .filter-list .count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-muted);
+  }
+
+  main.stage {
+    grid-area: main;
+    position: relative;
+    background: var(--ground);
+    min-height: 400px;
+    overflow: hidden;
+  }
+  #network {
+    position: absolute;
+    inset: 0;
+  }
+  .stage .hint {
+    position: absolute;
+    left: 16px; bottom: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    pointer-events: none;
+    box-shadow: var(--shadow);
+    max-width: 320px;
+  }
+  .stage .hint kbd {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink);
+  }
+
+  /* Details panel */
+  .details .placeholder {
+    color: var(--ink-muted);
+    font-size: 13px;
+    padding: 20px 4px;
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+  .details h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .details .cat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 3px 8px 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .details .cat-pill .dot {
+    width: 8px; height: 8px; border-radius: 2px;
+  }
+  .details .meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 14px;
+    margin: 14px 0 4px;
+    font-size: 13px;
+  }
+  .details .meta dt {
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+  .details .meta dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+  }
+  .details .desc {
+    color: var(--ink);
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 14px 0 8px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rel-group {
+    margin-top: 14px;
+  }
+  .rel-group .head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .rel-group .head .glyph {
+    width: 22px; height: 3px; border-radius: 2px;
+  }
+  .rel-group .head .glyph.dashed {
+    background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 8px);
+  }
+  .rel-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 2px;
+  }
+  .rel-group li button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+  .rel-group li button:hover {
+    background: var(--surface-2);
+    border-color: var(--border);
+  }
+  .rel-group li button .arrow {
+    color: var(--ink-muted);
+    font-size: 11px;
+    font-family: var(--font-mono);
+  }
+  .rel-group li button .subcat {
+    color: var(--ink-muted);
+    font-size: 11px;
+    font-family: var(--font-mono);
+  }
+  .rel-group.empty { display: none; }
+
+  .legend-note {
+    font-size: 11.5px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Focus states */
+  button:focus-visible,
+  input:focus-visible,
+  label:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  /* Scrollbar tuning */
+  .side::-webkit-scrollbar,
+  .search-results::-webkit-scrollbar { width: 8px; }
+  .side::-webkit-scrollbar-thumb,
+  .search-results::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+  }
+  .side::-webkit-scrollbar-track { background: transparent; }
+</style>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>AI Industry Map</h1>
+      <div class="sub">Who supplies, who competes, who owns whom — as of Sep 2026</div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">Theme</button>
+  </header>
+
+  <aside class="side left">
+    <h2>Search</h2>
+    <div class="search">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search-input" type="text" placeholder="Find a company…" autocomplete="off"/>
+      <div class="search-results" id="search-results"></div>
+    </div>
+
+    <h2>Categories</h2>
+    <div class="filter-list" id="cat-filters"></div>
+
+    <h2>Relationships</h2>
+    <div class="filter-list" id="rel-filters"></div>
+
+    <p class="legend-note">Node size roughly reflects strategic weight (valuation × influence). Data hand-curated from public sources; last touched Sep 2026.</p>
+  </aside>
+
+  <main class="stage">
+    <div id="network"></div>
+    <div class="hint"><kbd>drag</kbd> pan · <kbd>scroll</kbd> zoom · <kbd>click</kbd> details · <kbd>hover</kbd> highlight</div>
+  </main>
+
+  <aside class="side right details" id="details">
+    <div class="placeholder">Click any company to see its relationships. Try Nvidia, OpenAI, or Crusoe.</div>
+  </aside>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.9/dist/vis-network.min.js"></script>
+<script>
+(function() {
+  const CATEGORY = {
+    silicon:   { label: 'Silicon / Fab',       cssVar: '--cat-silicon' },
+    hyper:     { label: 'Hyperscaler / Big Tech', cssVar: '--cat-hyper' },
+    neocloud:  { label: 'GPU Neocloud',        cssVar: '--cat-neocloud' },
+    frontier:  { label: 'Frontier AI Lab',     cssVar: '--cat-frontier' },
+    openmodel: { label: 'Open-Weights Lab',    cssVar: '--cat-openmodel' },
+    applied:   { label: 'Applied AI Product',  cssVar: '--cat-applied' },
+    data:      { label: 'Data Platform',       cssVar: '--cat-data' },
+    infra:     { label: 'AI Infra Tool',       cssVar: '--cat-infra' },
+    robotics:  { label: 'Robotics / Embodied', cssVar: '--cat-robotics' },
+    labeling:  { label: 'Data / Labeling',     cssVar: '--cat-labeling' },
+  };
+
+  const RELATION = {
+    supplies: { label: 'Supplies to',      cssVar: '--rel-supplies', dashes: false, arrows: true,  short: 'supplies' },
+    invests:  { label: 'Invests in / partners', cssVar: '--rel-invests',  dashes: false, arrows: true,  short: 'invests in' },
+    owns:     { label: 'Owns / parent of', cssVar: '--rel-owns',     dashes: false, arrows: true,  short: 'owns' },
+    uses:     { label: 'Uses API of',      cssVar: '--rel-uses',     dashes: [4,4], arrows: true,  short: 'uses' },
+    competes: { label: 'Competes with',    cssVar: '--rel-competes', dashes: [6,6], arrows: false, short: 'competes with' },
+  };
+
+  const NODES = [
+    // Silicon / Fab
+    { id:'nvidia',    cat:'silicon',   label:'Nvidia',         size:52, val:'$4.4T (public)', desc:'Dominant AI GPU vendor (H100/H200/B200/GB300). Powers ~90% of frontier AI training and inference.' },
+    { id:'amd',       cat:'silicon',   label:'AMD',            size:34, val:'$280B (public)', desc:'MI300X / MI325 accelerators. Distant #2 in AI compute; growing share via Oracle, Meta, Microsoft.' },
+    { id:'tsmc',      cat:'silicon',   label:'TSMC',           size:42, val:'$1T (public)',   desc:'Fabricates the leading-edge nodes used by Nvidia, AMD, Apple, and Broadcom-designed custom silicon.' },
+    { id:'broadcom',  cat:'silicon',   label:'Broadcom',       size:38, val:'$1.4T (public)', desc:'Designs custom AI accelerators for hyperscalers (Google TPU, Meta MTIA). Networking silicon leader.' },
+
+    // Big tech / hyperscalers
+    { id:'alphabet',  cat:'hyper',     label:'Alphabet',       size:44, val:'$2.4T (public)', desc:'Parent of Google Cloud, DeepMind, and Waymo. Runs its own TPU stack end-to-end.' },
+    { id:'microsoft', cat:'hyper',     label:'Microsoft',      size:46, val:'$3.4T (public)', desc:'Parent of Azure. Largest OpenAI investor; increasingly diversified across labs.' },
+    { id:'amazon',    cat:'hyper',     label:'Amazon',         size:44, val:'$2.2T (public)', desc:'Parent of AWS. Anthropic\'s largest investor ($8B+) and primary cloud.' },
+    { id:'meta',      cat:'hyper',     label:'Meta',           size:42, val:'$1.7T (public)', desc:'Llama family, Superintelligence Labs. Invested $14B for 49% of Scale AI in 2025.' },
+    { id:'oracle',    cat:'hyper',     label:'Oracle',         size:34, val:'$680B (public)', desc:'Late but aggressive AI cloud; anchor of the OpenAI Stargate build-out with Crusoe.' },
+    { id:'aws',       cat:'hyper',     label:'AWS',            size:38, val:'part of Amazon', desc:'Largest cloud by revenue. Owns Trainium/Inferentia; primary compute for Anthropic.' },
+    { id:'gcp',       cat:'hyper',     label:'Google Cloud',   size:34, val:'part of Alphabet', desc:'TPU-differentiated cloud. Compute partner to Anthropic (secondary) and many startups.' },
+    { id:'azure',     cat:'hyper',     label:'Azure',          size:36, val:'part of Microsoft', desc:'The cloud that grew up with OpenAI. Still OpenAI\'s largest single provider.' },
+
+    // GPU Neoclouds
+    { id:'coreweave', cat:'neocloud',  label:'CoreWeave',      size:36, val:'~$70B (public)', desc:'Nvidia-backed GPU cloud. IPO 2025. Anchor customers: OpenAI, Microsoft, Meta. Acquired W&B.' },
+    { id:'crusoe',    cat:'neocloud',  label:'Crusoe',         size:32, val:'$30B (Series F, Sep 2026)', desc:'Energy-first vertically-integrated GPU cloud. Building Stargate Abilene with Oracle for OpenAI.' },
+    { id:'lambda',    cat:'neocloud',  label:'Lambda',         size:24, val:'private, ~$4B',  desc:'Developer-friendly reservation-heavy GPU cloud.' },
+    { id:'together',  cat:'neocloud',  label:'Together AI',    size:28, val:'$3.3B (Series C)', desc:'Inference cloud + open-model hosting; capacity planning is a core competency.' },
+    { id:'fireworks', cat:'neocloud',  label:'Fireworks',      size:26, val:'$2B+ (Series D)', desc:'Low-latency inference. FireAttention kernel; owns the sub-100ms serving niche.' },
+    { id:'nebius',    cat:'neocloud',  label:'Nebius',         size:24, val:'~$18B (public)',  desc:'Ex-Yandex EU/US GPU cloud. Growing hyperscale ambitions.' },
+
+    // Frontier labs
+    { id:'openai',    cat:'frontier',  label:'OpenAI',         size:50, val:'$500B (private)', desc:'GPT-5 / ChatGPT. Multi-cloud (Azure, Oracle, CoreWeave). Anchor of the Stargate build.' },
+    { id:'anthropic', cat:'frontier',  label:'Anthropic',      size:44, val:'$183B (private)', desc:'Claude family. Amazon + Google backed. Safety-oriented lab; heavy AWS Trainium user.' },
+    { id:'deepmind',  cat:'frontier',  label:'Google DeepMind',size:42, val:'part of Alphabet', desc:'Gemini family. Merger of Google Brain + DeepMind (2023).' },
+    { id:'xai',       cat:'frontier',  label:'xAI',            size:34, val:'$75B (private)',  desc:'Grok. Colossus supercomputer in Memphis. Musk-led.' },
+    { id:'metaai',    cat:'frontier',  label:'Meta AI',        size:38, val:'part of Meta',    desc:'Llama + Superintelligence Labs. Open-weights + closed-compute strategy.' },
+    { id:'mistral',   cat:'frontier',  label:'Mistral',        size:24, val:'$14B (private)',  desc:'French frontier lab. Open + proprietary product mix.' },
+
+    // Open-weights labs
+    { id:'qwen',      cat:'openmodel', label:'Alibaba Qwen',   size:28, val:'part of Alibaba', desc:'Leading open-weights family out of China; strong on multilingual + code.' },
+    { id:'deepseek',  cat:'openmodel', label:'DeepSeek',       size:32, val:'private',         desc:'Ultra-efficient open models. R1 rewired the industry\'s cost expectations.' },
+
+    // Applied products
+    { id:'cursor',    cat:'applied',   label:'Cursor',         size:30, val:'$10B+ (private)', desc:'AI code editor. Heavy Anthropic and OpenAI API consumer; own inference stack too.' },
+    { id:'cognition', cat:'applied',   label:'Cognition',      size:24, val:'$10B (private)',  desc:'Maker of Devin. Autonomous coding agent. Acquired Windsurf in 2025.' },
+    { id:'perplexity',cat:'applied',   label:'Perplexity',     size:26, val:'$18B (private)',  desc:'AI answer engine. Multi-model routing across labs + own Sonar model.' },
+    { id:'midjourney',cat:'applied',   label:'Midjourney',     size:22, val:'private, profitable', desc:'Leading image gen. Famously self-funded, no VC.' },
+    { id:'replit',    cat:'applied',   label:'Replit',         size:22, val:'$3B (private)',   desc:'AI-native code editing + hosting. Agents on top of frontier APIs.' },
+    { id:'harvey',    cat:'applied',   label:'Harvey',         size:20, val:'$5B (private)',   desc:'AI for law firms; deep Anthropic + OpenAI integration.' },
+
+    // Data platforms
+    { id:'databricks',cat:'data',      label:'Databricks',     size:36, val:'$62B (private)',  desc:'Data + AI lakehouse. Acquired MosaicML (2023). Multi-cloud (AWS/GCP/Azure).' },
+    { id:'snowflake', cat:'data',      label:'Snowflake',      size:30, val:'~$65B (public)',  desc:'Cloud data warehouse. Cortex AI puts LLM inference inside SQL.' },
+
+    // AI infra tools
+    { id:'huggingface',cat:'infra',    label:'Hugging Face',   size:28, val:'$4.5B (private)', desc:'Model hub + transformers + Spaces. The GitHub of open ML.' },
+    { id:'anyscale',  cat:'infra',     label:'Anyscale',       size:22, val:'$1B+ (private)',  desc:'Commercial Ray. Berkeley / Ion Stoica lineage.' },
+    { id:'modal',     cat:'infra',     label:'Modal',          size:22, val:'~$500M (private)', desc:'Serverless AI compute, Python-native DX.' },
+    { id:'baseten',   cat:'infra',     label:'Baseten',        size:20, val:'~$800M (private)', desc:'Model inference platform; strong OSS-model hosting.' },
+    { id:'skypilot',  cat:'infra',     label:'SkyPilot',       size:16, val:'$20M seed',       desc:'Multi-cloud GPU orchestration. Berkeley Sky Lab, out of stealth 2026.' },
+    { id:'vllm',      cat:'infra',     label:'vLLM',           size:24, val:'open source',     desc:'De facto open LLM serving engine. UCB origin; PagedAttention, continuous batching.' },
+
+    // Robotics / embodied
+    { id:'waymo',     cat:'robotics',  label:'Waymo',          size:32, val:'$126B (private)', desc:'Alphabet-owned autonomous ride-hail. Huge internal simulation compute demand.' },
+    { id:'tesla',     cat:'robotics',  label:'Tesla FSD / Optimus', size:32, val:'part of Tesla', desc:'Vertically integrated FSD + humanoid. Dojo custom compute + Nvidia hybrid.' },
+    { id:'pi',        cat:'robotics',  label:'Physical Intelligence', size:22, val:'$5.6B (private)', desc:'General-purpose robot foundation models (π₀, π₀.₅).' },
+    { id:'worldlabs', cat:'robotics',  label:'World Labs',     size:22, val:'$5B (private)',   desc:'Fei-Fei Li\'s lab. 3D world models. Marble product.' },
+
+    // Data / labeling
+    { id:'scale',     cat:'labeling',  label:'Scale AI',       size:28, val:'$29B (Meta invested)', desc:'Frontier training data + evals. Meta bought 49% in 2025; CEO joined Meta.' },
+    { id:'surge',     cat:'labeling',  label:'Surge AI',       size:18, val:'private',         desc:'Human labels; used heavily by frontier labs including Anthropic.' },
+  ];
+
+  // Relationships. type: supplies | invests | owns | uses | competes
+  const EDGES = [
+    // TSMC fabs
+    ['tsmc','nvidia','supplies'], ['tsmc','amd','supplies'], ['tsmc','broadcom','supplies'],
+    // Broadcom designs custom silicon for Alphabet + Meta
+    ['broadcom','alphabet','supplies'], ['broadcom','meta','supplies'],
+
+    // Nvidia sells to everyone
+    ['nvidia','aws','supplies'], ['nvidia','gcp','supplies'], ['nvidia','azure','supplies'], ['nvidia','oracle','supplies'],
+    ['nvidia','coreweave','supplies'], ['nvidia','crusoe','supplies'], ['nvidia','lambda','supplies'],
+    ['nvidia','together','supplies'], ['nvidia','fireworks','supplies'], ['nvidia','nebius','supplies'],
+    ['nvidia','xai','supplies'], ['nvidia','metaai','supplies'], ['nvidia','tesla','supplies'],
+
+    // AMD
+    ['amd','oracle','supplies'], ['amd','microsoft','supplies'], ['amd','meta','supplies'],
+
+    // Ownership (parent → child)
+    ['alphabet','gcp','owns'], ['alphabet','deepmind','owns'], ['alphabet','waymo','owns'],
+    ['microsoft','azure','owns'],
+    ['amazon','aws','owns'],
+    ['meta','metaai','owns'],
+
+    // Investments / big partnerships
+    ['microsoft','openai','invests'],
+    ['amazon','anthropic','invests'], ['alphabet','anthropic','invests'],
+    ['meta','scale','invests'],
+    ['nvidia','coreweave','invests'], ['nvidia','openai','invests'],
+
+    // Cloud → Lab compute supply
+    ['azure','openai','supplies'],
+    ['oracle','openai','supplies'],
+    ['coreweave','openai','supplies'], ['coreweave','metaai','supplies'], ['coreweave','microsoft','supplies'],
+    ['crusoe','openai','supplies'],
+    ['aws','anthropic','supplies'],
+    ['gcp','anthropic','supplies'],
+
+    // Labeling → Labs
+    ['scale','openai','supplies'], ['scale','metaai','supplies'],
+    ['surge','anthropic','supplies'], ['surge','openai','supplies'],
+
+    // Product uses (API consumers)
+    ['cursor','anthropic','uses'], ['cursor','openai','uses'],
+    ['cognition','anthropic','uses'],
+    ['perplexity','anthropic','uses'], ['perplexity','openai','uses'],
+    ['harvey','anthropic','uses'], ['harvey','openai','uses'],
+    ['replit','anthropic','uses'],
+
+    // Neoclouds use vLLM (open source infra dependency)
+    ['together','vllm','uses'], ['fireworks','vllm','uses'], ['baseten','vllm','uses'], ['modal','vllm','uses'],
+
+    // Databricks / Snowflake platforms sit on hyperscalers
+    ['databricks','aws','uses'], ['databricks','azure','uses'], ['databricks','gcp','uses'],
+    ['snowflake','aws','uses'], ['snowflake','azure','uses'], ['snowflake','gcp','uses'],
+    ['databricks','anthropic','uses'], ['databricks','openai','uses'],
+
+    // Competition (undirected)
+    ['nvidia','amd','competes'],
+    ['aws','gcp','competes'], ['aws','azure','competes'], ['aws','oracle','competes'], ['gcp','azure','competes'],
+    ['coreweave','crusoe','competes'], ['coreweave','lambda','competes'], ['crusoe','lambda','competes'],
+    ['coreweave','aws','competes'], ['crusoe','oracle','competes'],
+    ['together','fireworks','competes'], ['together','baseten','competes'], ['fireworks','baseten','competes'],
+    ['modal','baseten','competes'],
+    ['openai','anthropic','competes'], ['openai','deepmind','competes'], ['openai','xai','competes'],
+    ['anthropic','deepmind','competes'], ['anthropic','xai','competes'],
+    ['openai','metaai','competes'], ['anthropic','metaai','competes'],
+    ['mistral','openai','competes'], ['mistral','anthropic','competes'],
+    ['qwen','deepseek','competes'], ['qwen','metaai','competes'], ['deepseek','openai','competes'],
+    ['cursor','cognition','competes'], ['cursor','replit','competes'],
+    ['databricks','snowflake','competes'],
+    ['waymo','tesla','competes'],
+    ['pi','worldlabs','competes'],
+    ['huggingface','vllm','competes'],
+    ['skypilot','anyscale','competes'], ['skypilot','modal','competes'],
+  ];
+
+  // Compute CSS custom property → resolved color
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  function catColor(cat) { return cssVar(CATEGORY[cat].cssVar); }
+  function relColor(rel) { return cssVar(RELATION[rel].cssVar); }
+
+  // Build vis-network datasets
+  const activeCats = new Set(Object.keys(CATEGORY));
+  const activeRels = new Set(Object.keys(RELATION));
+
+  const nodesDataset = new vis.DataSet();
+  const edgesDataset = new vis.DataSet();
+
+  function rebuildNodes() {
+    const inkColor = cssVar('--ink');
+    const surfaceColor = cssVar('--surface');
+    nodesDataset.clear();
+    NODES.forEach(n => {
+      if (!activeCats.has(n.cat)) return;
+      const c = catColor(n.cat);
+      nodesDataset.add({
+        id: n.id,
+        label: n.label,
+        title: n.desc,
+        value: n.size,
+        color: {
+          background: c,
+          border: c,
+          highlight: { background: c, border: '#ffffff' },
+          hover: { background: c, border: '#ffffff' },
+        },
+        font: { color: inkColor, face: 'Inter, system-ui, sans-serif', strokeWidth: 3, strokeColor: cssVar('--ground'), size: 13 },
+        borderWidth: 1,
+      });
+    });
+  }
+
+  function rebuildEdges() {
+    edgesDataset.clear();
+    EDGES.forEach(([from, to, type], idx) => {
+      if (!activeRels.has(type)) return;
+      if (!activeCats.has(NODES.find(n => n.id === from)?.cat)) return;
+      if (!activeCats.has(NODES.find(n => n.id === to)?.cat)) return;
+      const spec = RELATION[type];
+      const color = relColor(type);
+      edgesDataset.add({
+        id: 'e' + idx,
+        from, to,
+        arrows: spec.arrows ? { to: { enabled: true, scaleFactor: 0.5 } } : undefined,
+        dashes: spec.dashes,
+        color: { color, highlight: color, hover: color, opacity: 0.7 },
+        width: 1.2,
+        selectionWidth: 1.6,
+        smooth: { enabled: true, type: 'continuous', roundness: 0.35 },
+        relType: type,
+      });
+    });
+  }
+
+  rebuildNodes();
+  rebuildEdges();
+
+  const container = document.getElementById('network');
+  const options = {
+    physics: {
+      enabled: true,
+      solver: 'barnesHut',
+      barnesHut: {
+        gravitationalConstant: -14000,
+        centralGravity: 0.15,
+        springLength: 140,
+        springConstant: 0.03,
+        damping: 0.35,
+        avoidOverlap: 0.35,
+      },
+      stabilization: { iterations: 250, updateInterval: 25 },
+    },
+    interaction: { hover: true, tooltipDelay: 300, dragView: true, zoomView: true, multiselect: false },
+    nodes: {
+      shape: 'dot',
+      scaling: { min: 12, max: 40, label: { enabled: true, min: 11, max: 18 } },
+    },
+    edges: {
+      hoverWidth: 0,
+      selectionWidth: 0,
+    },
+  };
+  const network = new vis.Network(container, { nodes: nodesDataset, edges: edgesDataset }, options);
+
+  // --- Left column: filters ---
+  const catFilters = document.getElementById('cat-filters');
+  const relFilters = document.getElementById('rel-filters');
+
+  function countByCat() {
+    const m = {};
+    NODES.forEach(n => { m[n.cat] = (m[n.cat] || 0) + 1; });
+    return m;
+  }
+  function countByRel() {
+    const m = {};
+    EDGES.forEach(([,,t]) => { m[t] = (m[t] || 0) + 1; });
+    return m;
+  }
+  const catCounts = countByCat();
+  const relCounts = countByRel();
+
+  Object.entries(CATEGORY).forEach(([key, cfg]) => {
+    const label = document.createElement('label');
+    label.innerHTML = `
+      <input type="checkbox" checked data-cat="${key}"/>
+      <span class="swatch" style="background: var(${cfg.cssVar})"></span>
+      <span class="name">${cfg.label}</span>
+      <span class="count">${catCounts[key] || 0}</span>
+    `;
+    label.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.checked) activeCats.add(key); else activeCats.delete(key);
+      rebuildNodes(); rebuildEdges();
+    });
+    catFilters.appendChild(label);
+  });
+
+  Object.entries(RELATION).forEach(([key, cfg]) => {
+    const label = document.createElement('label');
+    label.innerHTML = `
+      <input type="checkbox" checked data-rel="${key}"/>
+      <span class="swatch line ${cfg.dashes ? 'dashed' : ''}" style="background: ${cfg.dashes ? '' : 'var(' + cfg.cssVar + ')'}; color: var(${cfg.cssVar})"></span>
+      <span class="name">${cfg.label}</span>
+      <span class="count">${relCounts[key] || 0}</span>
+    `;
+    label.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.checked) activeRels.add(key); else activeRels.delete(key);
+      rebuildEdges();
+    });
+    relFilters.appendChild(label);
+  });
+
+  // --- Search ---
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.trim().toLowerCase();
+    searchResults.innerHTML = '';
+    if (!q) { searchResults.classList.remove('open'); return; }
+    const matches = NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 8);
+    if (matches.length === 0) { searchResults.classList.remove('open'); return; }
+    matches.forEach(n => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.innerHTML = `${n.label}<span class="cat">${CATEGORY[n.cat].label}</span>`;
+      btn.addEventListener('click', () => {
+        focusNode(n.id);
+        searchResults.classList.remove('open');
+        searchInput.value = '';
+      });
+      searchResults.appendChild(btn);
+    });
+    searchResults.classList.add('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search')) searchResults.classList.remove('open');
+  });
+
+  // --- Details panel ---
+  const detailsEl = document.getElementById('details');
+  function renderDetails(id) {
+    const n = NODES.find(x => x.id === id);
+    if (!n) return;
+    const cat = CATEGORY[n.cat];
+    const relsByType = { supplies: [], invests: [], owns: [], uses: [], competes: [] };
+    const invByType = { supplies: [], invests: [], owns: [], uses: [], competes: [] };
+
+    EDGES.forEach(([f, t, type]) => {
+      if (f === id) relsByType[type].push(t);
+      else if (t === id) invByType[type].push(f);
+    });
+
+    function nodeCard(nid) {
+      const n2 = NODES.find(x => x.id === nid);
+      if (!n2) return '';
+      const c = CATEGORY[n2.cat];
+      return `<li><button data-id="${n2.id}" type="button">
+        <span>${n2.label}</span>
+        <span class="subcat">${c.label}</span>
+      </button></li>`;
+    }
+
+    function group(label, cssVar, dashed, items, direction) {
+      if (items.length === 0) return '';
+      const arrowText = direction === 'outgoing' ? '→' : '←';
+      return `<div class="rel-group">
+        <div class="head"><span class="glyph ${dashed ? 'dashed' : ''}" style="background:${dashed?'':'var('+cssVar+')'}; color: var(${cssVar})"></span>${label} ${arrowText}</div>
+        <ul>${items.map(nodeCard).join('')}</ul>
+      </div>`;
+    }
+
+    const outgoing = [
+      group('Supplies to',    RELATION.supplies.cssVar, false, relsByType.supplies, 'outgoing'),
+      group('Invests in',     RELATION.invests.cssVar,  false, relsByType.invests,  'outgoing'),
+      group('Owns',           RELATION.owns.cssVar,     false, relsByType.owns,     'outgoing'),
+      group('Uses API of',    RELATION.uses.cssVar,     true,  relsByType.uses,     'outgoing'),
+    ].join('');
+    const incoming = [
+      group('Supplied by',    RELATION.supplies.cssVar, false, invByType.supplies, 'incoming'),
+      group('Invested by',    RELATION.invests.cssVar,  false, invByType.invests,  'incoming'),
+      group('Owned by',       RELATION.owns.cssVar,     false, invByType.owns,     'incoming'),
+      group('Used by',        RELATION.uses.cssVar,     true,  invByType.uses,     'incoming'),
+    ].join('');
+    const competes = group('Competes with', RELATION.competes.cssVar, true,
+      [...new Set([...relsByType.competes, ...invByType.competes])], 'outgoing');
+
+    detailsEl.innerHTML = `
+      <span class="cat-pill"><span class="dot" style="background: var(${cat.cssVar})"></span>${cat.label}</span>
+      <h3>${n.label}</h3>
+      <dl class="meta">
+        <dt>Valuation</dt><dd>${n.val}</dd>
+      </dl>
+      <p class="desc">${n.desc}</p>
+      ${outgoing}
+      ${incoming}
+      ${competes}
+    `;
+    detailsEl.querySelectorAll('button[data-id]').forEach(btn => {
+      btn.addEventListener('click', () => focusNode(btn.dataset.id));
+    });
+  }
+
+  function focusNode(id) {
+    network.selectNodes([id]);
+    network.focus(id, { scale: 1.1, animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
+    renderDetails(id);
+  }
+
+  network.on('click', (params) => {
+    if (params.nodes && params.nodes.length > 0) {
+      renderDetails(params.nodes[0]);
+    }
+  });
+
+  // --- Theme toggle ---
+  const themeBtn = document.getElementById('theme-toggle');
+  function applyThemeColors() {
+    // Re-render nodes/edges since colors come from CSS variables
+    rebuildNodes();
+    rebuildEdges();
+  }
+  themeBtn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'light' ? 'dark' : (cur === 'dark' ? '' : (matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark'));
+    if (next === '') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', next);
+    setTimeout(applyThemeColors, 30);
+  });
+
+  // Rebuild colors on system theme change (when unstamped)
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (!document.documentElement.getAttribute('data-theme')) applyThemeColors();
+  });
+
+  // Kick off with a highlighted starter node so the details panel isn't empty on first paint
+  network.once('stabilizationIterationsDone', () => {
+    // Leave the placeholder; users see the whole graph laid out.
+  });
+})();
+</script>
