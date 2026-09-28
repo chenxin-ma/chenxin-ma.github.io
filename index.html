@@ -258,10 +258,10 @@ if (!doNotTrack) {
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
 
-        <div style="margin:0 0 30px;padding:20px 24px;border:1px solid #e0e0e0;border-radius:4px;background:#fafafa;">
-          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#808080;margin-bottom:6px;">New · interactive</div>
-          <a href="/viz/p1.html" style="font-size:19px;font-weight:700;color:#008AFF;text-decoration:none;">The Journey of One Token &rarr;</a>
-          <p style="margin:8px 0 0;color:#404040;">
+        <div style="margin:0 0 30px;padding:20px 24px;border:1px solid #2A3846;border-radius:4px;background:#161F2A;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#5D7188;margin-bottom:6px;">New &middot; interactive</div>
+          <a href="/viz/p1.html" style="font-size:19px;font-weight:700;color:#4CA6E0;text-decoration:none;">The Journey of One Token &rarr;</a>
+          <p style="margin:8px 0 0;color:#8496A8;">
             Three interactive pieces on how an LLM inference server actually works, from one
             token arriving at the load balancer to a byte leaving HBM — backed by measurements
             on GPUs I rented. Start here for the reading order.
@@ -269,6 +269,64 @@ if (!doNotTrack) {
         </div>
 
         <div class="posts-list">
+
+            <article class="post-preview">
+    <a href="/viz/request_journey.html">
+        <h2 class="post-title">The Journey of One Request</h2>
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  <i class="fas fa-bolt"></i>&nbsp;Interactive &middot; animated walkthrough
+</span>
+    </p>
+    <div class="post-entry">
+        Follow a single request from the moment it hits the load balancer to the moment the
+        last token comes back. Each of the 12 stops is a real mechanism &mdash; the queue, the
+        prefill vs decode split, the KV cache being read, prefix caching, speculative decoding
+        &mdash; with an inline glossary you can click for definitions on demand.
+        <a href="/viz/request_journey.html" class="post-read-more">[Read More]</a>
+    </div>
+</article>
+
+            <article class="post-preview">
+    <a href="/viz/scaling_topology.html">
+        <h2 class="post-title">Serving a Trillion Parameters</h2>
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  <i class="fas fa-bolt"></i>&nbsp;Interactive &middot; expandable diagram
+</span>
+    </p>
+    <div class="post-entry">
+        Zoom the same question up to a model that doesn&#39;t fit on one card &mdash; or eight,
+        or sixteen. Four nested levels: data center &rarr; nodes &rarr; GPUs &rarr; SM. Watch
+        what happens to weights (they stay put), the KV cache (it never travels), and the one
+        thing that does move &mdash; the activation &mdash; as it crosses NVLink, InfiniBand,
+        and finally HBM.
+        <a href="/viz/scaling_topology.html" class="post-read-more">[Read More]</a>
+    </div>
+</article>
+
+            <article class="post-preview">
+    <a href="/viz/phase1.html">
+        <h2 class="post-title">The Inference Engine, in Cross-Section</h2>
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  <i class="fas fa-bolt"></i>&nbsp;Interactive &middot; long-form with charts
+</span>
+    </p>
+    <div class="post-entry">
+        The technical companion to the first two. Prefill (compute-bound) vs. decode
+        (bandwidth-bound), continuous batching, PagedAttention, prefix caching, speculative
+        decoding &mdash; each explained mechanically with a chart, then a results table at the
+        bottom summarizing every measured speedup across the whole project.
+        <a href="/viz/phase1.html" class="post-read-more">[Read More]</a>
+    </div>
+</article>
 
 
             <article class="post-preview">
