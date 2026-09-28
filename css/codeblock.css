@@ -31,3 +31,56 @@ pre code.hljs {
 .highlight td:last-child pre code, .highlight pre code {
   white-space: pre;
 }
+
+/* --- Dark theme for code blocks --- */
+/* Loads after highlight.min.css (light hljs theme) in every page's <head>,
+   so these rules win without needing to touch highlight.min.css itself. */
+
+pre, code, kbd, samp {
+  font-family: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+}
+
+pre {
+  background: #1E2936;
+  border: 1px solid #2A3846;
+  border-radius: 4px;
+  color: #DCE5EE;
+}
+
+code {
+  background: #1E2936;
+  color: #B98BE0;
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #DCE5EE;
+  background: #1E2936;
+}
+.hljs-comment, .hljs-quote { color: #5D7188; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-subst { color: #B98BE0; font-weight: bold; }
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable, .hljs-tag .hljs-attr { color: #4CA6E0; }
+.hljs-string, .hljs-doctag { color: #56D68A; }
+.hljs-title, .hljs-section, .hljs-selector-id { color: #4CA6E0; font-weight: bold; }
+.hljs-subst { font-weight: normal; }
+.hljs-type, .hljs-class .hljs-title { color: #B98BE0; font-weight: bold; }
+.hljs-tag, .hljs-name, .hljs-attribute { color: #8496A8; font-weight: normal; }
+.hljs-regexp, .hljs-link { color: #56D68A; }
+.hljs-symbol, .hljs-bullet { color: #B98BE0; }
+.hljs-built_in, .hljs-builtin-name { color: #4CA6E0; }
+.hljs-meta { color: #5D7188; font-weight: bold; }
+.hljs-deletion { background: rgba(224, 92, 92, .18); }
+.hljs-addition { background: rgba(86, 214, 138, .18); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
